@@ -21,3 +21,5 @@
                  (funcall (coerce `(setter ,g) 'function) 1 a)
                  a)
                '(1 A A A)))))
+
+;; eof
