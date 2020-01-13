@@ -1,8 +1,7 @@
-#+sbcl
-(in-package :sb-impl)
+(cl:in-package "https://github.com/g000001/srfi-17#internals")
 
 #+sbcl
-(define-function-name-syntax srfi-17:setter (name)
+(sb-int:define-function-name-syntax setter (name)
   (when (and (cdr name)
              (consp (cdr name)))
     (destructuring-bind (fun &rest rest) (cdr name)
@@ -12,7 +11,7 @@
           (symbol (values t fun))
           ;; reasonable (SETF (QUUX BAZ)) case [but not (SETF (SETF
           ;; FOO))]
-          (cons (unless (member (car fun) '(srfi-17:setter cl:setf))
-                  (valid-function-name-p fun))))))))
+          (cons (unless (member (car fun) '(setter cl:setf))
+                  (sb-int:valid-function-name-p fun))))))))
 
 ;; eof
